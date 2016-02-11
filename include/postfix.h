@@ -8,9 +8,9 @@ using namespace std;
 class Postfix
 {
 public:
-	string ConvertToPolish(string input); // перевод инфиксной формы в постфиксную
-    double Result(string input);          // подсчёт результата 
+	string ConvertToPolish(string input); // РїРµСЂРµРІРѕРґ РёРЅС„РёРєСЃРЅРѕР№ С„РѕСЂРјС‹ РІ РїРѕСЃС‚С„РёРєСЃРЅСѓСЋ
+    double Result(string input);          // РїРѕРґСЃС‡С‘С‚ СЂРµР·СѓР»СЊС‚Р°С‚Р° 
 //private:
-	int IsOperator(char с);               // проверка на операцию
-	int GetOperationPrt(char с);          // определение приоритета операции
+	int IsOperator(char СЃ);               // РїСЂРѕРІРµСЂРєР° РЅР° РѕРїРµСЂР°С†РёСЋ
+	int GetOperationPrt(char СЃ);          // РѕРїСЂРµРґРµР»РµРЅРёРµ РїСЂРёРѕСЂРёС‚РµС‚Р° РѕРїРµСЂР°С†РёРё
 };

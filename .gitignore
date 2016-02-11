@@ -26,9 +26,3 @@
 *.exe
 *.out
 *.app
-
-*.txt
-*.vcxproj.user
-*.opensdf
-*.sdf
-*.suo
