@@ -1,4 +1,4 @@
-﻿Построение начато 11.02.2016 14:33:49.
+﻿Построение начато 11.02.2016 22:20:25.
      1>Проект "C:\Users\Александр\Work\mp2\mp2-lab3-postfix\sln\vs10\postfix\sample_stack\sample_stack.vcxproj" в узле 2 (целевые объекты Build).
      1>ClCompile:
          C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I../../../../include /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt /D_VARIADIC_MAX=10 ..\..\..\..\samples\sample_stack.cpp
@@ -11,4 +11,4 @@
 
 Построение успешно завершено.
 
-Затраченное время: 00:00:02.72
+Затраченное время: 00:00:02.67
