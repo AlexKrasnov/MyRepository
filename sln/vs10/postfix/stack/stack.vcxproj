@@ -14,6 +14,7 @@
     <ProjectGuid>{075416F7-7ACD-4611-8C8B-391FC7D2CDC4}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>stack</RootNamespace>
+    <ProjectName>postfix_notation</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
