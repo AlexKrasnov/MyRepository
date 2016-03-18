@@ -1,0 +1,14 @@
+﻿Построение начато 18.03.2016 22:08:56.
+     1>Проект "C:\Users\Александр\Work\mp2\mp2-lab3-postfix\sln\vs12\postfix\test\test.vcxproj" в узле 2 (целевые объекты Build).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I..\..\..\..\include /I..\..\..\..\gtest /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt /D_VARIADIC_MAX=10 ..\..\..\..\test\test_stack_and_postfix.cpp
+         test_stack_and_postfix.cpp
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Александр\Work\mp2\mp2-lab3-postfix\sln\vs12\postfix\Debug\test.exe" /INCREMENTAL /NOLOGO /LIBPATH:..\Debug gtest.lib stack.lib postfix.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Александр\Work\mp2\mp2-lab3-postfix\sln\vs12\postfix\Debug\test.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Александр\Work\mp2\mp2-lab3-postfix\sln\vs12\postfix\Debug\test.lib" /MACHINE:X86 Debug\test_main.obj
+         Debug\test_stack_and_postfix.obj
+         test.vcxproj -> C:\Users\Александр\Work\mp2\mp2-lab3-postfix\sln\vs12\postfix\Debug\test.exe
+     1>Построение проекта "C:\Users\Александр\Work\mp2\mp2-lab3-postfix\sln\vs12\postfix\test\test.vcxproj" завершено (целевые объекты Build).
+
+Построение успешно завершено.
+
+Затраченное время: 00:00:05.31
