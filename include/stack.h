@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #define MemSize 50
 

@@ -1,13 +1,13 @@
-#include "postfix.h"
+п»ї#include "postfix.h"
 
-int Postfix::IsOperator(char c)      // проверка на операцию
+int Postfix::IsOperator(char c)      // РїСЂРѕРІРµСЂРєР° РЅР° РѕРїРµСЂР°С†РёСЋ
 {
 	if (c=='+' || c=='-' || c=='*' || c=='/' || c=='^' || c=='('|| c==')') return 1;
 	else if (c==' ' || c=='=') return 2;
 	else return 0;
 }
 
-int Postfix::GetOperationPrt(char c)  // определение приоритета операции
+int Postfix::GetOperationPrt(char c)  // РѕРїСЂРµРґРµР»РµРЅРёРµ РїСЂРёРѕСЂРёС‚РµС‚Р° РѕРїРµСЂР°С†РёРё
 {
 	switch (c)
 	{
@@ -24,43 +24,43 @@ int Postfix::GetOperationPrt(char c)  // определение приоритета операции
 string Postfix::ConvertToPolish(string infix)
 {
 	int len = infix.length();
-	string polish;                   // Строка для обратной польской записи
-	Stack<char> OperationStack(len); // Стек для операторов
+	string polish;                   // РЎС‚СЂРѕРєР° РґР»СЏ РѕР±СЂР°С‚РЅРѕР№ РїРѕР»СЊСЃРєРѕР№ Р·Р°РїРёСЃРё
+	Stack<char> OperationStack(len); // РЎС‚РµРє РґР»СЏ РѕРїРµСЂР°С‚РѕСЂРѕРІ
 	bool var = true;
 	int count1(0),count2(0);
-	for (int i(0);i<len;i++)         // Проверка на правильный ввод
+	for (int i(0);i<len;i++)         // РџСЂРѕРІРµСЂРєР° РЅР° РїСЂР°РІРёР»СЊРЅС‹Р№ РІРІРѕРґ
 	{
-		// Проверяем есть ли посторонние символы
+		// РџСЂРѕРІРµСЂСЏРµРј РµСЃС‚СЊ Р»Рё РїРѕСЃС‚РѕСЂРѕРЅРЅРёРµ СЃРёРјРІРѕР»С‹
 		if ((!isdigit(infix[i])) && (!IsOperator(infix[i]))) 
-			throw "Ошибка! Недопустимый символ" ;
-		// Проверяем: выражение не может быть без цифр
+			throw "РћС€РёР±РєР°! РќРµРґРѕРїСѓСЃС‚РёРјС‹Р№ СЃРёРјРІРѕР»" ;
+		// РџСЂРѕРІРµСЂСЏРµРј: РІС‹СЂР°Р¶РµРЅРёРµ РЅРµ РјРѕР¶РµС‚ Р±С‹С‚СЊ Р±РµР· С†РёС„СЂ
 		if (isdigit(infix[i])) var = false; 
-		// Проверяем: кол-во '(' и ')' должно быть равно
+		// РџСЂРѕРІРµСЂСЏРµРј: РєРѕР»-РІРѕ '(' Рё ')' РґРѕР»Р¶РЅРѕ Р±С‹С‚СЊ СЂР°РІРЅРѕ
 		if ((infix[i])=='(') count1++;
 		if ((infix[i])==')') count2++;
-		// Проверяем: орерации не могут быть друг за другом
+		// РџСЂРѕРІРµСЂСЏРµРј: РѕСЂРµСЂР°С†РёРё РЅРµ РјРѕРіСѓС‚ Р±С‹С‚СЊ РґСЂСѓРі Р·Р° РґСЂСѓРіРѕРј
 		if (strchr("+-/*^", infix[i])!=NULL && strchr("+-/*^", infix[i+1])!=NULL && i<len-1)
-			throw "Ошибка! Операции не согласованы" ;
+			throw "РћС€РёР±РєР°! РћРїРµСЂР°С†РёРё РЅРµ СЃРѕРіР»Р°СЃРѕРІР°РЅС‹" ;
 	}
-	if (var == true) throw "Ошибка! Выражение не содержит цифр" ;
-	if (count1!=count2) throw "Ошибка! Не согласовано кол-во скобок" ;
+	if (var == true) throw "РћС€РёР±РєР°! Р’С‹СЂР°Р¶РµРЅРёРµ РЅРµ СЃРѕРґРµСЂР¶РёС‚ С†РёС„СЂ" ;
+	if (count1!=count2) throw "РћС€РёР±РєР°! РќРµ СЃРѕРіР»Р°СЃРѕРІР°РЅРѕ РєРѕР»-РІРѕ СЃРєРѕР±РѕРє" ;
 
 	for (int i(0);i<len;i++) 
 	{
-		if ((i==1) && (infix[0]=='-')) polish="-"; // Если в начале минус
-		if ((IsOperator(infix[i]))==2) continue;   // Если пробел или равно, пропускаем
-		if (isdigit(infix[i]))                     // Если цифра,
+		if ((i==1) && (infix[0]=='-')) polish="-"; // Р•СЃР»Рё РІ РЅР°С‡Р°Р»Рµ РјРёРЅСѓСЃ
+		if ((IsOperator(infix[i]))==2) continue;   // Р•СЃР»Рё РїСЂРѕР±РµР» РёР»Рё СЂР°РІРЅРѕ, РїСЂРѕРїСѓСЃРєР°РµРј
+		if (isdigit(infix[i]))                     // Р•СЃР»Рё С†РёС„СЂР°,
 		{
-			while (!IsOperator(infix[i]))          // считываем всё число
+			while (!IsOperator(infix[i]))          // СЃС‡РёС‚С‹РІР°РµРј РІСЃС‘ С‡РёСЃР»Рѕ
 			{
 				polish+=infix[i++]; 
 				if (i==len) break;
 			}
-			polish.push_back(' ');                 // добавляем пробел после числа
+			polish.push_back(' ');                 // РґРѕР±Р°РІР»СЏРµРј РїСЂРѕР±РµР» РїРѕСЃР»Рµ С‡РёСЃР»Р°
 			i--;
 		}
-		if ((IsOperator(infix[i]))==1)             // если операция или скобки
-			if (infix[i] == '(' && infix[i+1] == '-' && i<len-2)  // Если '-' после '('
+		if ((IsOperator(infix[i]))==1)             // РµСЃР»Рё РѕРїРµСЂР°С†РёСЏ РёР»Рё СЃРєРѕР±РєРё
+			if (infix[i] == '(' && infix[i+1] == '-' && i<len-2)  // Р•СЃР»Рё '-' РїРѕСЃР»Рµ '('
 			{
 				i=i+2;
 				if (isdigit(infix[i]))
@@ -86,7 +86,7 @@ string Postfix::ConvertToPolish(string infix)
 					s=OperationStack.pop();
 				}
 			}
-			else if (i!=0) // если не минус в начале
+			else if (i!=0) // РµСЃР»Рё РЅРµ РјРёРЅСѓСЃ РІ РЅР°С‡Р°Р»Рµ
 			{
 				while ((OperationStack.getTop()>-1) && (GetOperationPrt(infix[i])<=GetOperationPrt(OperationStack.look())))
 				{
@@ -96,7 +96,7 @@ string Postfix::ConvertToPolish(string infix)
 				OperationStack.push(infix[i]);
 			}
 	}
-	//Когда прошли по всем символам, выкидываем из стека все оставшиеся там операторы в строку
+	//РљРѕРіРґР° РїСЂРѕС€Р»Рё РїРѕ РІСЃРµРј СЃРёРјРІРѕР»Р°Рј, РІС‹РєРёРґС‹РІР°РµРј РёР· СЃС‚РµРєР° РІСЃРµ РѕСЃС‚Р°РІС€РёРµСЃСЏ С‚Р°Рј РѕРїРµСЂР°С‚РѕСЂС‹ РІ СЃС‚СЂРѕРєСѓ
 	while (OperationStack.getTop()>-1)
 	{
 		polish.push_back(OperationStack.pop());
@@ -112,7 +112,7 @@ double Postfix::Result(string polish)
 	Stack<double> ResultStack(len);
 	for (int i(0);i<len;i++) 
 	{
-		//Если цифра, то читаем все число и толкаем на вершину стека
+		//Р•СЃР»Рё С†РёС„СЂР°, С‚Рѕ С‡РёС‚Р°РµРј РІСЃРµ С‡РёСЃР»Рѕ Рё С‚РѕР»РєР°РµРј РЅР° РІРµСЂС€РёРЅСѓ СЃС‚РµРєР°
 		if (isdigit(polish[i])) 
 		{
 			string str;
@@ -126,7 +126,7 @@ double Postfix::Result(string polish)
 			ResultStack.push(op); 
 			i--;
 		}
-		// Если встречен минус
+		// Р•СЃР»Рё РІСЃС‚СЂРµС‡РµРЅ РјРёРЅСѓСЃ
 		if (polish[i]=='-' && isdigit(polish[i+1]) && i<len-1)
 		{
 			i=i+1;
@@ -155,7 +155,7 @@ double Postfix::Result(string polish)
 				{
 					res = op2 / op1; break;
 				}
-				else throw "Деление на ноль!";
+				else throw "Р”РµР»РµРЅРёРµ РЅР° РЅРѕР»СЊ!";
 			case '^': res = pow(op2,op1); break;
 			}
 			ResultStack.push(res); 
