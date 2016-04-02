@@ -1,4 +1,16 @@
-﻿#include "postfix.h"
+﻿///////////////////////////////////////////////////////////////////////
+// postfix.cpp                                                       //
+// Вычисление арифметических выражений в целых числах                //
+// Автор - Краснов А.А., Нижний Новгород, 2016                       //
+///////////////////////////////////////////////////////////////////////
+
+#include "postfix.h"
+
+Postfix::Postfix(string str)
+{
+	s=str;
+	Error();
+}
 
 int Postfix::IsOperator(char c)      // проверка на операцию
 {
@@ -13,28 +25,25 @@ int Postfix::GetOperationPrt(char c)  // определение приорите
 	{
 	case '(': return 0;
 	case ')': return 1;
-	case '+': 
-	case '-': return 2;
-	case '*': 
-	case '/': return 3;
+	case '+': case '-': return 2;
+	case '*': case '/': return 3;
 	case '^': return 4;
+	default: return 5;
 	}
 }
 
-string Postfix::ConvertToPolish(string infix)
+void Postfix::Error()
 {
-	int len = infix.length();
-	string polish;                   // Строка для обратной польской записи
-	Stack<char> OperationStack(len); // Стек для операторов
-	bool var = true;
-	int count1(0),count2(0);
-	for (int i(0);i<len;i++)         // Проверка на правильный ввод
+	string infix = this->s;
+	int len = infix.length(), count1(0),count2(0);
+	bool flag = true;
+	for (int i(0);i<len;i++)  
 	{
 		// Проверяем есть ли посторонние символы
 		if ((!isdigit(infix[i])) && (!IsOperator(infix[i]))) 
 			throw "Ошибка! Недопустимый символ" ;
 		// Проверяем: выражение не может быть без цифр
-		if (isdigit(infix[i])) var = false; 
+		if (isdigit(infix[i])) flag = false; 
 		// Проверяем: кол-во '(' и ')' должно быть равно
 		if ((infix[i])=='(') count1++;
 		if ((infix[i])==')') count2++;
@@ -42,8 +51,16 @@ string Postfix::ConvertToPolish(string infix)
 		if (strchr("+-/*^", infix[i])!=NULL && strchr("+-/*^", infix[i+1])!=NULL && i<len-1)
 			throw "Ошибка! Операции не согласованы" ;
 	}
-	if (var == true) throw "Ошибка! Выражение не содержит цифр" ;
+	if (flag == true) throw "Ошибка! Выражение не содержит цифр" ;
 	if (count1!=count2) throw "Ошибка! Не согласовано кол-во скобок" ;
+}
+
+string Postfix::ConvertToPolish()
+{
+	string infix = this->s;
+	int len = infix.length();
+	string polish;                   // Строка для обратной польской записи
+	Stack<char> OperationStack(len); // Стек для операторов
 
 	for (int i(0);i<len;i++) 
 	{
@@ -72,7 +89,6 @@ string Postfix::ConvertToPolish(string infix)
 						if (i==len) break;
 					}
 					polish.push_back(' ');
-					//i--;
 				}
 			}
 			else if (infix[i]=='(') OperationStack.push(infix[i]); 
@@ -105,9 +121,10 @@ string Postfix::ConvertToPolish(string infix)
 	return polish; 
 }
 
-double Postfix::Result(string polish)
+double Postfix::Result()
 {
 	double res(0);
+	string polish = this->ConvertToPolish();
 	int len = polish.length();
 	Stack<double> ResultStack(len);
 	for (int i(0);i<len;i++) 
@@ -153,7 +170,8 @@ double Postfix::Result(string polish)
 			case '/': 
 				if (op1!=0)
 				{
-					res = op2 / op1; break;
+					res = op2 / op1; 
+					break;
 				}
 				else throw "Деление на ноль!";
 			case '^': res = pow(op2,op1); break;
@@ -163,4 +181,3 @@ double Postfix::Result(string polish)
 	}
 	return ResultStack.look();
 }
-//Example: 3+4*2/(1-5)^2 = 3.5

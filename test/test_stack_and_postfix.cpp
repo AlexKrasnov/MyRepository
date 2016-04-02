@@ -1,6 +1,7 @@
 #include "postfix.h"
 #include <gtest.h>
 
+
 TEST(Stack, can_create_stack_with_positive_length)
 {
 	ASSERT_NO_THROW (Stack<int> A(5));
@@ -94,120 +95,115 @@ TEST(Stack, compare_stack_empty_return_true)
 
 TEST(Postfix, test_name1)
 {
-	Postfix P;
 	string s = "1";
-	ASSERT_NO_THROW(P.ConvertToPolish(s));
-	double rez = P.Result(P.ConvertToPolish(s));;
+	Postfix P(s);
+	ASSERT_NO_THROW(P.ConvertToPolish());
+	double rez = P.Result();
 	EXPECT_EQ(rez,1);
 }
 
 TEST(Postfix, test_name2)
 {
-	Postfix P;
 	string s = "3+4*2/(1-5)^2=";
-	ASSERT_NO_THROW(P.ConvertToPolish(s));
+	Postfix P(s);
+	ASSERT_NO_THROW(P.ConvertToPolish());
 }
 
 TEST(Postfix, test_name3)
 {
-	Postfix P;
 	string s = "3+4*2/(1-5)^2";
-	ASSERT_NO_THROW(P.ConvertToPolish(s));
+    Postfix P(s);
+	ASSERT_NO_THROW(P.ConvertToPolish());
 }
 
 TEST(Postfix, test_name4)
 {
-	Postfix P;
 	string s1 = "3+4*2/(1-5)^2";
 	string s2 = "3 4 2 * 1 5 - 2 ^ / + ";
-	EXPECT_EQ(s2,P.ConvertToPolish(s1));
+	Postfix P(s1);
+	EXPECT_EQ(s2,P.ConvertToPolish());
 }
 
 TEST(Postfix, test_name5)
 {
-	Postfix P;
 	string s1 = "3+4*2/(1-5)^2=";
 	string s2 = "3 4 2 * 1 5 - 2 ^ / + ";
-	EXPECT_EQ(s2,P.ConvertToPolish(s1));
+    Postfix P(s1);
+	EXPECT_EQ(s2,P.ConvertToPolish());
 }
 
 TEST(Postfix, test_name6)
 {
-	Postfix P;
 	string s = "3+4*2/(1-5)^2=";
-	double rez = P.Result(P.ConvertToPolish(s));;
+	Postfix P(s);
+	double rez = P.Result();
 	EXPECT_EQ(rez,3.5);
 }
 
 TEST(Postfix, test_name7)
 {
-	Postfix P;
 	string s = "(((999-99+100)*10)^(1/2))/10";
-	double rez = P.Result(P.ConvertToPolish(s));;
+    Postfix P(s);
+	double rez = P.Result();
 	EXPECT_EQ(rez,10);
 }
 
 TEST(Postfix, test_name8)
 {
-	Postfix P;
 	string s = "(7-";
-	ASSERT_ANY_THROW(P.ConvertToPolish(s));
+	ASSERT_ANY_THROW(Postfix P(s));
 }
 
 TEST(Postfix, test_name9)
 {
-	Postfix P;
 	string s = "--6";
-	ASSERT_ANY_THROW(P.ConvertToPolish(s));
+    ASSERT_ANY_THROW(Postfix P(s));
 }
 
 TEST(Postfix, test_name10)
 {
-	Postfix P;
 	string s = "34++23";
-	ASSERT_ANY_THROW(P.ConvertToPolish(s));
+	ASSERT_ANY_THROW(Postfix P(s));
 }
 
 TEST(Postfix, test_name11)
 {
-	Postfix P;
 	string s = "!$&";
-	ASSERT_ANY_THROW(P.ConvertToPolish(s));
+	ASSERT_ANY_THROW(Postfix P(s));
 }
 
 TEST(Postfix, test_name12)
 {
-	Postfix P;
 	string s = "- ";
-	ASSERT_ANY_THROW(P.ConvertToPolish(s));
+	ASSERT_ANY_THROW(Postfix P(s));
 }
 
 TEST(Postfix, test_name13)
 {
-	Postfix P;
 	string s = "5/0";
-	ASSERT_NO_THROW(P.ConvertToPolish(s));
-	EXPECT_EQ("5 0 / ",P.ConvertToPolish(s));
-	ASSERT_ANY_THROW(P.Result(P.ConvertToPolish(s)));
+    Postfix P(s);
+	ASSERT_NO_THROW(P.ConvertToPolish());
+	EXPECT_EQ("5 0 / ",P.ConvertToPolish());
+	ASSERT_ANY_THROW(P.Result());
 }
 
 TEST(Postfix, test_name14)
 {
-	Postfix P;
 	string s = "-40-(-50)";
-	ASSERT_NO_THROW(P.ConvertToPolish(s));
+    Postfix P(s);
+	ASSERT_NO_THROW(P.ConvertToPolish());
 }
 
 TEST(Postfix, test_name15)
 {
-	Postfix P;
 	string s = "-40-(-50)";
-	ASSERT_NO_THROW(P.Result(P.ConvertToPolish(s)));
+    Postfix P(s);
+	ASSERT_NO_THROW(P.Result());
 }
 
 TEST(Postfix, test_name16)
 {
-	Postfix P;
 	string s = "-40-(-50)";
-	EXPECT_EQ(10, P.Result(P.ConvertToPolish(s)));
+    Postfix P(s);
+	EXPECT_EQ(10, P.Result());
 }
