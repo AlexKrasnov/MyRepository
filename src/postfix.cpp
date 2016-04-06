@@ -1,6 +1,6 @@
 ﻿///////////////////////////////////////////////////////////////////////
 // postfix.cpp                                                       //
-// Вычисление арифметических выражений в целых числах                //
+// Вычисление арифметических выражений                               //
 // Автор - Краснов А.А., Нижний Новгород, 2016                       //
 ///////////////////////////////////////////////////////////////////////
 
@@ -40,7 +40,7 @@ void Postfix::Error()
 	for (int i(0);i<len;i++)  
 	{
 		// Проверяем есть ли посторонние символы
-		if ((!isdigit(infix[i])) && (!IsOperator(infix[i]))) 
+		if ((!isdigit(infix[i])) && (!IsOperator(infix[i])) && (!(infix[i]=='.'))) 
 			throw "Ошибка! Недопустимый символ" ;
 		// Проверяем: выражение не может быть без цифр
 		if (isdigit(infix[i])) flag = false; 
@@ -66,7 +66,7 @@ string Postfix::ConvertToPolish()
 	{
 		if ((i==1) && (infix[0]=='-')) polish="-"; // Если в начале минус
 		if ((IsOperator(infix[i]))==2) continue;   // Если пробел или равно, пропускаем
-		if (isdigit(infix[i]))                     // Если цифра,
+		if (isdigit(infix[i])|| infix[i]=='.')                     // Если цифра,
 		{
 			while (!IsOperator(infix[i]))          // считываем всё число
 			{
@@ -80,7 +80,7 @@ string Postfix::ConvertToPolish()
 			if (infix[i] == '(' && infix[i+1] == '-' && i<len-2)  // Если '-' после '('
 			{
 				i=i+2;
-				if (isdigit(infix[i]))
+				if (isdigit(infix[i]) || infix[i]=='.')
 				{
 					polish.push_back('-');
 					while (!IsOperator(infix[i]))
@@ -130,7 +130,7 @@ double Postfix::Result()
 	for (int i(0);i<len;i++) 
 	{
 		//Если цифра, то читаем все число и толкаем на вершину стека
-		if (isdigit(polish[i])) 
+		if (isdigit(polish[i])|| polish[i]=='.') 
 		{
 			string str;
 			double op;

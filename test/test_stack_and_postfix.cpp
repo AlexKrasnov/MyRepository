@@ -207,3 +207,25 @@ TEST(Postfix, test_name16)
     Postfix P(s);
 	EXPECT_EQ(10, P.Result());
 }
+
+TEST(Postfix, test_name17)
+{
+	string s1 = "3.2+4.1*2.5/(1.66-5.05)^2=";
+	string s2 = "3.2 4.1 2.5 * 1.66 5.05 - 2 ^ / + ";
+    Postfix P(s1);
+	EXPECT_EQ(s2,P.ConvertToPolish());
+}
+
+TEST(Postfix, test_name18)
+{
+	string s = "9^1.5";
+    Postfix P(s);
+	EXPECT_EQ(27, P.Result());
+}
+
+TEST(Postfix, test_name19)
+{
+	string s = "-100.95-(-99.95)";
+    Postfix P(s);
+	EXPECT_EQ(-1, P.Result());
+}
