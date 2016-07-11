@@ -582,7 +582,7 @@ namespace calculator {
 					 Graphics^ p = pictureBox2->CreateGraphics();
 					 Graphics^ q = pictureBox3->CreateGraphics();
 					 System::Drawing::Font^ f1 = gcnew System::Drawing::Font("Arial",17);	
-					 System::Drawing::Font^ f2 = gcnew System::Drawing::Font("Arial",15);
+					 System::Drawing::Font^ f2 = gcnew System::Drawing::Font("Arial",13);
 					 Postfix Convertor(*s);
 					 string polish = Convertor.ConvertToPolish();
 					 String ^str1 = gcnew String(polish.c_str());
